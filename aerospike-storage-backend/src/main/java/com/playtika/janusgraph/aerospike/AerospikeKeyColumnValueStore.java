@@ -20,6 +20,7 @@ import org.janusgraph.diskstorage.keycolumnvalue.KeyColumnValueStore;
 import org.janusgraph.diskstorage.keycolumnvalue.KeyIterator;
 import org.janusgraph.diskstorage.keycolumnvalue.KeyRangeQuery;
 import org.janusgraph.diskstorage.keycolumnvalue.KeySliceQuery;
+import org.janusgraph.diskstorage.keycolumnvalue.KeySlicesIterator;
 import org.janusgraph.diskstorage.keycolumnvalue.SliceQuery;
 import org.janusgraph.diskstorage.keycolumnvalue.StoreTransaction;
 import org.slf4j.Logger;
@@ -73,6 +74,13 @@ public class AerospikeKeyColumnValueStore implements KeyColumnValueStore {
         logger.trace("getKeys({}, tx:{}, {})", storeName, txh, query);
 
         return scanOperations.getKeys(storeName, query, txh);
+    }
+
+    @Override
+    public KeySlicesIterator getKeys(List<SliceQuery> queries, StoreTransaction txh) throws BackendException {
+        logger.trace("getKeys({}, tx:{}, {})", storeName, txh, queries);
+
+        return scanOperations.getKeys(storeName, queries, txh);
     }
 
     @Override

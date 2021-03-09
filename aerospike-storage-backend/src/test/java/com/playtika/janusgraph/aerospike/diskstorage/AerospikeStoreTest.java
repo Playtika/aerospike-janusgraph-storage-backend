@@ -29,7 +29,13 @@ import static com.playtika.janusgraph.aerospike.AerospikeTestUtils.getAerospikeC
 
 public class AerospikeStoreTest extends KeyColumnValueStoreTest {
 
-    public static final String DUE_TO_DEFERRED_LOCKING_AND_MUTATION = "Due to deferred locking and mutation approach";
+    public static final String DUE_TO_DEFERRED_LOCKING_AND_MUTATION
+            = "Due to deferred locking and mutation approach in Aerospike connector";
+    public static final String DUE_TO_SCAN_KEYS_INCONSISTENCY
+            = "Due to Aerospike scan operation inconsistency " +
+            "StandardScannerExecutor become inconsistent in multi-thread mode";
+    public static final String DUE_TO_RECORD_TO_BIG
+            = "Record to big for Aerospike";
 
     @ClassRule
     public static final GenericContainer container = getAerospikeContainer();
@@ -39,21 +45,12 @@ public class AerospikeStoreTest extends KeyColumnValueStoreTest {
         return new AerospikeStoreManager(getAerospikeConfiguration(container));
     }
 
-    //TODO investigate
-    @Ignore
-    @Override
-    @Test
-    public void scanTestWithSimpleJob() {
-    }
-
-    //TODO investigate
-    @Ignore
-    @Test
-    @FeatureFlag(
-            feature = JanusGraphFeature.Scan
-    )
-    public void testGetKeysColumnSlicesSimple() {
-    }
+//    @Tag(DUE_TO_SCAN_KEYS_INCONSISTENCY)
+//    @Ignore
+//    @Override
+//    @Test
+//    public void scanTestWithSimpleJob() {
+//    }
 
     @Tag(DUE_TO_DEFERRED_LOCKING_AND_MUTATION)
     @Ignore
