@@ -53,7 +53,7 @@
         <netty-all.version>4.1.60.Final</netty-all.version>
 
         <!--Test-->
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <assertj.version>3.19.0</assertj.version>
         <testcontainers.version>1.15.2</testcontainers.version>
         <blockhound.version>1.0.4.RELEASE</blockhound.version>
